@@ -36,8 +36,7 @@ export default {
   methods: {
     addSKill() {
           this.skills.push({skill: this.skill})
-          this.skill = '';
-      
+          this.skill = ''; 
     }
   }
   }
