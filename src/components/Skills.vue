@@ -4,7 +4,11 @@
     
     <div class="holder">
       <form @submit.prevent="addSkill">
-        <input type="text" placeholder="Enter a skill you have..." v-model="skill">
+        <input type="text" placeholder="Enter a skill you have..." name="skill"
+        v-model="skill"
+        v-validate="'min:5'">
+
+        <p class="alert" v-if="errors.has('skill')"> {{erros.first('skill')}} </p>
 
       </form>
 
@@ -35,8 +39,15 @@ export default {
   },
   methods: {
     addSKill() {
+      this.$validator.validateAll().then((result) => {
+        if(result) {
+
           this.skills.push({skill: this.skill})
           this.skill = ''; 
+        } else {
+          console.log("Note valid");
+        }
+      })
     }
   }
   }
