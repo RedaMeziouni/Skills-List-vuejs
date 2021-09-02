@@ -8,12 +8,15 @@
         v-model="skill"
         v-validate="'min:5'">
 
-        <p class="alert" v-if="errors.has('skill')"> {{erros.first('skill')}} </p>
-
+        <transition name="alert-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
+          <p class="alert" v-if="errors.has('skill')"> {{erros.first('skill')}} </p>
+        </transition>
       </form>
 
       <ul>
-        <li v-for="(data, index) in skills" :key='index'> {{ data.skill }} </li>
+        <transition-group name="list"  enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+          <li v-for="(data, index) in skills" :key='index'> {{ data.skill }} </li>
+        </transition-group>
       </ul>
 
       
